@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Создать аудиокнигу</title>
+
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
+	<link rel="../stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="container">
+		<h2>Новая книга: </h2>
+		<div class="create-form">
+			<div class="form-group">
+  				<label for="choose-type">Тип записи: </label>
+  				<select class="form-control selectpicker" id="choose-type" title="Выберите тип книги" onchange="chooseFormToCreate()">
+    				<option value="audio" selected="selected">Аудиокнига</option>
+    				<option value="studybook">Учебник</option>
+  				</select>
+  				<form action="" class="general">
+  					<p>	
+						<label for="book-title">Название книги: </label>
+  						<input type="text" id="title" class="form-control">
+					</p>
+					<p>	
+						<label for="auther">Автор книги: </label>
+  						<input type="text" id="auther" class="form-control">
+					</p>
+					<p>	
+						<label for="publishing-house">Издательство: </label>
+  						<input type="text" id="publishing-house" class="form-control">
+					</p>
+					<p>	
+						<label for="year">Год издания: </label>
+  						<input type="text" id="year" class="form-control">
+					</p>
+					<p>	
+						<label for="audience">Аудитория: </label>
+  						<input type="text" id="audience" class="form-control">
+					</p>
+					<p>	
+						<label for="description">Краткое описание: </label>
+  						<input type="text" id="description" class="form-control">
+					</p>
+  				</form>
+			</div>
+			<div id="audio-form">
+				<form action="">
+					<p>	
+						<label for="reader">Читает: </label>
+  						<input type="text" id="reader" class="form-control">
+					</p>
+					<p>	
+						<label for="long">Длительность(в минутах): </label>
+  						<input type="text" id="long" class="form-control">
+					</p>
+				</form>
+			</div>
+			<div id="studybook-form" style="display: none;">
+				<form action="">
+					<p>	
+						<label for="science">Область науки: </label>
+  						<input type="text" id="science" class="form-control">
+					</p>
+					<p>	
+						<label for="illustration">Иллюстрации: </label>
+  						<input type="checkbox" id="illustration">
+					</p>
+				</form>	
+			</div>
+			<div class="btn-to-add">
+				<button class="btn">Создать</button>
+			</div>
+		</div>
+	</div>
+	<script src="../js/script.js"></script>
+</body>
+</html>
