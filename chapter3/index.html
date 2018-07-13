@@ -7,12 +7,15 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
 	<div class="container">
 		<div class="for-button">
-			<button type="button" id="create-btn" class="btn btn-primary">
-        		Создать
-      		</button>
+			<div class="btn-group">
+  				<button type="button" id="create-btn" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Создать <span class="caret"></span></button>
+  					<ul class="dropdown-menu" role="menu">
+    					<li><a href="#">Создать аудиокнигу</a></li>
+    					<li><a href="#">Создать учебник</a></li>
+  					</ul>
+			</div>
 		</div>
 		<div class="for-table">
 			<table class="table table-bordered">
@@ -24,7 +27,6 @@
     					<th>Издательство</th>
     					<th>Объем книги</th>
     					<th>Жанр</th>
-    					<th>Аудитория</th>
     					<th></th>
 
     				</tr>
@@ -32,7 +34,9 @@
 				<tbody>
     				<tr>
     					<th scope="row">1</th>
-    					<td>Мастер и Маргарита</td>
+    					<td>
+    						<a href="html/master.html">Мастер и Маргарита</a>
+    					</td>
     					<td>М.А.Булгаков</td>
     					<td>Азбука</td>
     					<td>480 страниц</td>
