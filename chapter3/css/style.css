@@ -11,3 +11,17 @@
 #create-btn {
 	margin: 5px;
 }
+
+.contain {
+	width: 300px;
+	margin: 0 auto;
+	padding: 5px;
+}
+
+.contain h2 {
+	border-bottom: 1px solid black ; 
+}
+
+.general p {
+	
+}

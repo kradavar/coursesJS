@@ -1,9 +1,19 @@
 let typeOfBook = document.getElementById('choose-type');
+let allBooks = []; // для работы с таблицей главной стр в будущем
+
 
 function chooseFormToCreate() {
+
+	let elements = document.getElementsByClassName('text-info');
+
+	for (var i = 0; i < elements.length; i++) {
+		elements[i].value = "";
+	}
+
 	if (typeOfBook.value == "audio") {
 		document.getElementById('audio-form').style.display = "block";
 		document.getElementById('studybook-form').style.display = "none";
+
 	}
 
 	if(typeOfBook.value == "studybook") {
@@ -13,7 +23,6 @@ function chooseFormToCreate() {
 }
 
 function createBook(){
-	console.log(typeOfBook.value);
 	switch(typeOfBook.value){
 		case 'audio':
 			let book = new AudioBook();
@@ -25,6 +34,8 @@ function createBook(){
 			book.setPubHouse = document.getElementById('publishing-house').value;
 			book.setDescription = document.getElementById('description').value;
 			book.setAudience = document.getElementById('audience').value;
+
+			allBooks.push(book);
 		break;
 		case 'studybook':
 			let studybook = new StudyBook();
@@ -36,11 +47,14 @@ function createBook(){
 			studybook.setPubHouse = document.getElementById('publishing-house').value;
 			studybook.setDescription = document.getElementById('description').value;
 			studybook.setAudience = document.getElementById('audience').value;
+
+			allBooks.push(studybook);
 		break;
 	}
 }
 
 function Book(title, auther, publishingHouse, year, audience, description){
+
 	this.setTitle = function(){
 		this.title = title;
 	}
@@ -95,6 +109,7 @@ function AudioBook(){
 	this.getLong = function(){
 		return this.long;
 	}
+}	
 function StudyBook(){
 	Book.call(this);
 	this.setScience = function(){
@@ -111,5 +126,27 @@ function StudyBook(){
 		return this.inllustration;
 	}
 }
+/* для добавления в таблицу
+function fillInTheTable(){
 
-}
+
+	for (var i = 0; i < allBooks.length; i++) {
+		tabelInfo += "<tr><th scope=\"row\">"+(i+1)+"</th><td>"+
+		allBooks[i].getTitle + "</td><td>" +
+		allBooks[i].getAuthor + "</td><td>" +
+		allBooks[i].getPubHouse + "</td><td>" +
+		allBooks[i].getYear + "</td><td>" +
+		allBooks[i].getDescription + "</td><td>" +
+		allBooks[i].getAudience + "</td></tr>"
+	}
+
+	table.innerHTML = tabelInfo;
+
+	window.open("../index.html", self);
+
+	let parent = document.getElementById('for-table');
+
+	parent.appendChild(table);
+
+	
+}*/
