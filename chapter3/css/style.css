@@ -10,6 +10,14 @@
 
 #create-btn {
 	margin: 5px;
+	margin-bottom: 15px;
+	padding: 15px 20px;
+}
+
+#create-btn a {
+	color: white;
+	text-decoration: none;
+
 }
 
 .contain {
@@ -23,5 +31,5 @@
 }
 
 .general p {
-	
+	margin: 12px 0;
 }
