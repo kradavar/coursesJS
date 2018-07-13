@@ -1,0 +1,13 @@
+. {
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	margin: 25px auto;
+	padding: 10px;
+}
+
+#create-btn {
+	margin: 5px;
+}
