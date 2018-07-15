@@ -14,10 +14,9 @@
 	padding: 15px 20px;
 }
 
-#create-btn a {
+.my-a-btn a {
 	color: white;
 	text-decoration: none;
-
 }
 
 .contain {
