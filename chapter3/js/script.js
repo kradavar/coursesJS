@@ -51,10 +51,44 @@ function createBook(){
 	allBooks.push(newBook);
 
 	console.log(newBook);
-
-
-
 }
+
+/*
+function chooseFunction(){
+	let checkedTitle = document.getElementById('title').value;
+	let changeFunction = false;
+
+	for (var i = 0; i < allBooks.length; i++) {
+		if(allBooks[i].getTitle() == checkedTitle){
+			changeFunction = true;
+			changeBookInfo(allBooks[i]);
+		}
+	}
+
+	if (!changeFunction){
+		createBook();
+	}
+}
+
+function changeBookInfo(book){
+	book.setTitle(document.getElementById('title').value);
+	book.setAuthor(document.getElementById('author').value);
+	book.setYear(document.getElementById('year').value);
+	book.setPubHouse(document.getElementById('publishing-house').value);
+	book.setDescription(document.getElementById('description').value);
+	book.setAudience(document.getElementById('audience').value);
+
+	if(book instanseof AudioBook){
+		book.setLong(document.getElementById('long').value);
+		book.setReader(document.getElementById('reader').value);
+	}
+
+	if (book instanseof StudyBook) {
+		book.setScience(document.getElementById('science').value);
+	 	book.setIllustration(document.getElementById('illustration').checked);
+	}
+}
+*/
 
 function Book(title, author, publishingHouse, year, audience, description){
 
@@ -71,7 +105,13 @@ function Book(title, author, publishingHouse, year, audience, description){
 		this.year = year;
 	}
 	this.setAudience = function(audience){
-		this.audience = audience;
+
+		let regular = /(\d{1,2})-(\d{1,2})/;
+		if(regular.test(audience)){
+			this.audience = audience;
+		}
+		alert("Введите значения наибольшего и наименьшего возрастов через тире!");
+		document.getElementById('audience').value = "";		
 	}
 	this.setDescription = function(description){
 		this.description = description;
@@ -133,27 +173,3 @@ function StudyBook(){
 		return this.illustration;
 	}
 }
-/* для добавления в таблицу
-function fillInTheTable(){
-
-
-	for (var i = 0; i < allBooks.length; i++) {
-		tabelInfo += "<tr><th scope=\"row\">"+(i+1)+"</th><td>"+
-		allBooks[i].getTitle + "</td><td>" +
-		allBooks[i].getAuthor + "</td><td>" +
-		allBooks[i].getPubHouse + "</td><td>" +
-		allBooks[i].getYear + "</td><td>" +
-		allBooks[i].getDescription + "</td><td>" +
-		allBooks[i].getAudience + "</td></tr>"
-	}
-
-	table.innerHTML = tabelInfo;
-
-	window.open("../index.html", self);
-
-	let parent = document.getElementById('for-table');
-
-	parent.appendChild(table);
-
-	
-}*/
