@@ -23,54 +23,57 @@ function chooseFormToCreate() {
 }
 
 function createBook(){
-	switch(typeOfBook.value){
-		case 'audio':
-			let book = new AudioBook();
-			book.setLong = document.getElementById('long').value;
-			book.setReader = document.getElementById('reader').value;
-			book.setTitle = document.getElementById('title').value;
-			book.setAuthor = document.getElementById('auther').value;
-			book.setYear = document.getElementById('year').value;
-			book.setPubHouse = document.getElementById('publishing-house').value;
-			book.setDescription = document.getElementById('description').value;
-			book.setAudience = document.getElementById('audience').value;
 
-			allBooks.push(book);
-		break;
-		case 'studybook':
-			let studybook = new StudyBook();
-			studybook.setScience = document.getElementById('science').value;
-			studybook.setIllustration = document.getElementById('inllustration').value;
-			studybook.setTitle = document.getElementById('title').value;
-			studybook.setAuthor = document.getElementById('auther').value;
-			studybook.setYear = document.getElementById('year').value;
-			studybook.setPubHouse = document.getElementById('publishing-house').value;
-			studybook.setDescription = document.getElementById('description').value;
-			studybook.setAudience = document.getElementById('audience').value;
+	let newBook;
 
-			allBooks.push(studybook);
-		break;
+	switch(typeOfBook.value) {
+		case 'audio': 
+			newBook = new AudioBook();
+			newBook.setLong(document.getElementById('long').value);
+			newBook.setReader(document.getElementById('reader').value);
+			break;
+		case 'studybook': 
+			newBook = new StudyBook();
+			newBook.setScience(document.getElementById('science').value);
+	 		newBook.setIllustration(document.getElementById('illustration').checked);
+	 		break;
+	 	default: 
+	 		return alert("Выберите тип книги!");
 	}
+
+	newBook.setTitle(document.getElementById('title').value);
+	newBook.setAuthor(document.getElementById('author').value);
+	newBook.setYear(document.getElementById('year').value);
+	newBook.setPubHouse(document.getElementById('publishing-house').value);
+	newBook.setDescription(document.getElementById('description').value);
+	newBook.setAudience(document.getElementById('audience').value);
+
+	allBooks.push(newBook);
+
+	console.log(newBook);
+
+
+
 }
 
-function Book(title, auther, publishingHouse, year, audience, description){
+function Book(title, author, publishingHouse, year, audience, description){
 
-	this.setTitle = function(){
+	this.setTitle = function(title){
 		this.title = title;
 	}
-	this.setAuthor = function(){
-		this.auther = auther;
+	this.setAuthor = function(author){
+		this.author = author;
 	}
-	this.setPubHouse = function(){
+	this.setPubHouse = function(publishingHouse){
 		this.publishingHouse = publishingHouse;
 	}
-	this.setYear = function(){
+	this.setYear = function(year){
 		this.year = year;
 	}
-	this.setAudience = function(){
+	this.setAudience = function(audience){
 		this.audience = audience;
 	}
-	this.setDescription = function(){
+	this.setDescription = function(description){
 		this.description = description;
 	}
 
@@ -78,7 +81,7 @@ function Book(title, auther, publishingHouse, year, audience, description){
 		return this.title;
 	}
 	this.getAuthor = function(){
-		return this.auther;
+		return this.author;
 	}
 	this.getPubHouse = function(){
 		return this.publishingHouse;
@@ -96,10 +99,10 @@ function Book(title, auther, publishingHouse, year, audience, description){
 
 function AudioBook(){
 	Book.call(this);
-	this.setReader = function(){
+	this.setReader = function(reader){
 		this.reader = reader;
 	}
-	this.setLong = function(){
+	this.setLong = function(long){
 		this.long = long;
 	}
 
@@ -110,20 +113,24 @@ function AudioBook(){
 		return this.long;
 	}
 }	
+
 function StudyBook(){
 	Book.call(this);
-	this.setScience = function(){
+	this.setScience = function(science){
 		this.science = science;
 	}
-	this.setIllustration = function(){
-		this.inllustration = inllustration;
+
+	this.setIllustration = function(illustration){
+
+		this.illustration = illustration;
+		
 	}
 
 	this.getScience = function(){
 		return this.science;
 	}
 	this.getIllustration = function(){
-		return this.inllustration;
+		return this.illustration;
 	}
 }
 /* для добавления в таблицу
