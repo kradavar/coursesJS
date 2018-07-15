@@ -1,6 +1,6 @@
 let allBooks = [];
 let table = document.createElement('table');
-let tabelInfo = "<thead><tr><th>#</th>" +
+let tableInfo = "<thead><tr><th>#</th>" +
 	"<th>Название</th><th>Автор</th><th>Издательство</th>" +
 	"<th>Год издания</th><th>Краткое описание</th><th>Возраст аудитории</th>" +
 	"<th> </th><th> </th></tr></thead><tbody>";
@@ -33,20 +33,21 @@ function fillInTheTable() {
 
 	for (var i = 0; i < allBooks.length; i++) {
 
-		tabelInfo += "<tr><th scope=\"row\">" + allBooks[i].id + "</th><td>" +
+		tableInfo += "<tr><th scope=\"row\">" + allBooks[i].id + "</th><td>" +
 			allBooks[i].title + "</td><td>" +
 			allBooks[i].author + "</td><td>" +
 			allBooks[i].publishingHouse + "</td><td>" +
 			allBooks[i].year + "</td><td>" +
 			allBooks[i].description + "</td><td>" +
 			allBooks[i].audience + "</td>" +
-			"<td><a href=\"#\">Редактировать</a> " +
+			"<td><a href=\"#\">Редактировать</a>" +
 			"<a href=\"#delete-book\" data-toggle=\"modal\">Удалить</a>" +
-			"</td><td><button type=\"button\" onclick = \"getMoreInfo(" + allBooks[i].id + ")\" class=\"btn btn-primary my-a-btn\">" +
-			"Подробнее</button></td>";
+			"</td><td><button type=\"button\" class=\"btn btn-primary my-a-btn\">" +
+			"<a href=\"../html/show.html?id=" + allBooks[i].id + "\">Подробнее</a>" +
+			"</button></td>";
 	}
-	tabelInfo += "</tbody>";
-	table.innerHTML = tabelInfo;
+	tableInfo += "</tbody>";
+	table.innerHTML = tableInfo;
 	let parent = document.getElementById('for-table');
 	parent.appendChild(table);
 	table.className = "table table-bordered table-hover";
