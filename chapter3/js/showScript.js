@@ -74,3 +74,7 @@ function fillInTheTable() {
 
 
 }
+
+function goToMainWindow() {
+  window.location = "../index.html";
+}

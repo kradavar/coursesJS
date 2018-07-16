@@ -11,11 +11,11 @@
 <body onload="loadJSON()">
   <div class="container">
     <div class="for-button">
-      <button type="button" id="create-btn" class="btn btn-primary my-a-btn">
-        <a href="html/create-book.html">
-                  Создать
-                </a>
-      </button>
+      <a href="html/create-book.html">
+        <button type="button" id="create-btn" class="btn btn-primary my-a-btn">
+          Создать
+        </button>
+      </a>
     </div>
     <div id="for-table">
     </div>
@@ -31,11 +31,11 @@
           <h4 class="modal-title">Удалить книгу</h4>
         </div>
         <div class="modal-body">
-          <p>Вы уверены, что хотите удалить эту книгу?</p>
+          <p>Вы уверены, что хотите удалить <b><i class="title"></i></b>? Отменить действие будет невозможно.</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-          <button type="button" class="btn btn-primary" onclick="deleteFromBase()">Да</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+          <button type="button" class="btn btn-danger btn-ok">Удалить</button>
         </div>
       </div>
     </div>

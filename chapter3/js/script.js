@@ -21,11 +21,6 @@ function sendToServer(body) {
 	xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 	xhr.setRequestHeader('Accept', 'application/json');
 	xhr.send(body);
-	if (xhr.status != 200) {
-		alert(xhr.status + ': ' + xhr.statusText);
-	} else {
-		alert("easy");
-	}
 }
 
 function chooseFormToCreate() {
@@ -50,30 +45,6 @@ function chooseFormToCreate() {
 
 function createBook() {
 	allBooks = loadJSON();
-	/*
-		switch (typeOfBook.value) {
-			case 'audio':
-				newBook = new AudioBook();
-				newBook.setLong(document.getElementById('long').value);
-				newBook.setReader(document.getElementById('reader').value);
-				break;
-			case 'studybook':
-				newBook = new StudyBook();
-				newBook.setScience(document.getElementById('science').value);
-				newBook.setIllustration(document.getElementById('illustration').checked);
-				break;
-			default:
-				return alert("Выберите тип книги!");
-		}
-
-		newBook.setTitle(document.getElementById('title').value);
-		newBook.setAuthor(document.getElementById('author').value);
-		newBook.setYear(document.getElementById('year').value);
-		newBook.setPubHouse(document.getElementById('publishing-house').value);
-		newBook.setDescription(document.getElementById('description').value);
-		newBook.setAudience(document.getElementById('audience').value);
-	*/
-
 	let book = {};
 	book.id = allBooks.length + 1;
 	book.title = document.getElementById('title').value;
