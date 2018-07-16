@@ -1,27 +1,23 @@
-let typeOfBook = document.getElementById('choose-type');
-let allBooks = [];
-let xhr = new XMLHttpRequest();
-window.onload = setData();
+window.onload = loadBook();
 
 function loadJSON() {
+  let xhr = new XMLHttpRequest();
   let url = "http://localhost:3000/books/" + getIdOfBook();
   xhr.open('GET', url, false);
   xhr.send();
   if (xhr.status != 200) {
     alert(xhr.status + ': ' + xhr.statusText);
   } else {
-    let textForParser = xhr.responseText;
-    return JSON.parse(textForParser);
+    return JSON.parse(xhr.responseText);
   }
 }
 
 function getIdOfBook() {
-  let id = document.location.search.substring(1);
-  return id;
+  return document.location.search.substring(1);
 }
 
-function setData() {
-  currentBook = loadJSON();
+function loadBook() {
+  let currentBook = loadJSON();
 
   if (currentBook.long != undefined) {
     document.getElementById('choose-type').value = "audio";
@@ -47,9 +43,9 @@ function setData() {
   document.getElementById('description').value = currentBook.description;
 }
 
-function saveChangedData() {
-
+function updateBook() {
   let book = {};
+  let bookType = document.getElementById('choose-type');
 
   book.title = document.getElementById('title').value;
   book.author = document.getElementById('author').value;
@@ -57,7 +53,7 @@ function saveChangedData() {
   book.year = document.getElementById('year').value;
   book.audience = document.getElementById('audience').value;
   book.description = document.getElementById('description').value;
-  switch (typeOfBook.value) {
+  switch (bookType.value) {
     case 'audio':
       book.long = document.getElementById('long').value;
       book.reader = document.getElementById('reader').value;
@@ -69,8 +65,9 @@ function saveChangedData() {
     default:
       return alert("Выберите тип книги!");
   }
-
+  // TODO: move into another function
   let url = "http://localhost:3000/books/" + getIdOfBook();
+  let xhr = new XMLHttpRequest();
 
   xhr.open('PUT', url, false);
   xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');

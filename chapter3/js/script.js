@@ -1,22 +1,16 @@
-let typeOfBook = document.getElementById('choose-type');
-let allBooks = [];
-let xhr = new XMLHttpRequest();
-
 function loadJSON() {
-
+	let xhr = new XMLHttpRequest();
 	xhr.open('GET', 'http://localhost:3000/books', false);
-
 	xhr.send();
 	if (xhr.status != 200) {
 		alert(xhr.status + ': ' + xhr.statusText);
 	} else {
-		let textForParser = xhr.responseText;
-		console.log(JSON.parse(textForParser));
-		return JSON.parse(textForParser);
+		return JSON.parse(xhr.responseText);
 	}
 }
 
 function sendToServer(body) {
+	let xhr = new XMLHttpRequest();
 	xhr.open('POST', 'http://localhost:3000/books', false);
 	xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 	xhr.setRequestHeader('Accept', 'application/json');
@@ -24,28 +18,31 @@ function sendToServer(body) {
 }
 
 function chooseFormToCreate() {
-
 	let elements = document.getElementsByClassName('text-info');
+	let bookType = document.getElementById('choose-type');
 
 	for (var i = 0; i < elements.length; i++) {
 		elements[i].value = "";
 	}
 
-	if (typeOfBook.value == "audio") {
+	if (bookType.value == "audio") {
 		document.getElementById('audio-form').style.display = "block";
 		document.getElementById('studybook-form').style.display = "none";
 
 	}
 
-	if (typeOfBook.value == "studybook") {
+	if (bookType.value == "studybook") {
 		document.getElementById('audio-form').style.display = "none";
 		document.getElementById('studybook-form').style.display = "block";
 	}
 }
 
 function createBook() {
-	allBooks = loadJSON();
+	let allBooks = loadJSON();
+	let bookType = document.getElementById('choose-type');
 	let book = {};
+
+	// TODO: fix id problem
 	book.id = allBooks.length + 1;
 	book.title = document.getElementById('title').value;
 	book.author = document.getElementById('author').value;
@@ -53,7 +50,7 @@ function createBook() {
 	book.year = document.getElementById('year').value;
 	book.audience = document.getElementById('audience').value;
 	book.description = document.getElementById('description').value;
-	switch (typeOfBook.value) {
+	switch (bookType.value) {
 		case 'audio':
 			book.long = document.getElementById('long').value;
 			book.reader = document.getElementById('reader').value;
@@ -65,11 +62,9 @@ function createBook() {
 		default:
 			return alert("Выберите тип книги!");
 	}
-	//console.log(book);
 
 	sendToServer(JSON.stringify(book));
-
-	window.location = "../index.html";
+	goToMainWindow();
 }
 
 function goToMainWindow() {

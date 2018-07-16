@@ -14,7 +14,7 @@
     <div class="create-form">
       <div class="form-group">
         <label for="choose-type">Тип записи: </label>
-        <select class="form-control selectpicker" id="choose-type" title="Выберите тип книги" onchange="chooseFormToCreate()">
+        <select class="form-control selectpicker" id="choose-type" title="Выберите тип книги">
           <option value="audio" selected="selected">Аудиокнига</option>
           <option value="studybook">Учебник</option>
         </select>
@@ -70,7 +70,7 @@
         </form>
       </div>
       <div class="btn-to-add">
-        <button class="btn btn-primary" onclick="saveChangedData()">Сохранить</button>
+        <button class="btn btn-primary" onclick="updateBook()">Сохранить</button>
         <button class="btn btn-secondary" onclick="goToMainWindow()">Отмена</button>
       </div>
     </div>
