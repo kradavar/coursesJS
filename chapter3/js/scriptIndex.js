@@ -35,7 +35,7 @@ function fillInTheTable() {
 			allBooks[i].year + "</td><td>" +
 			allBooks[i].description + "</td><td>" +
 			allBooks[i].audience + "</td>" +
-			"<td><a href=\"#\">Редактировать </a>" +
+			"<td><a href=\"./html/edit.html?" + allBooks[i].id + "\">Редактировать </a>" +
 			"<a href=\"#\" data-toggle=\"modal\" data-record-id = \"" +
 			allBooks[i].id + "\" data-target=\"#delete-book\" data-record-title=\"" +
 			allBooks[i].title + "\">Удалить</a></td><td><button type=\"button\" " +

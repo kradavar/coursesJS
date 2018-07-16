@@ -27,16 +27,13 @@ function getArgument() {
 function fillInTheTable() {
 
   allBooks = loadJSON();
-
-  let index = getArgument();
-
-  let currentBook = allBooks[index];
-
-  for (let i = 0; i < allBooks.length; i++) {
-    if (index == allBooks[i].id) {
-      currentBook = allBooks[i];
-    }
+let index = getArgument();
+let currentBook = allBooks[index];
+for (let i = 0; i < allBooks.length; i++) {
+  if (index == allBooks[i].id) {
+    currentBook = allBooks[i];
   }
+}
 
   tableInfo += " " + currentBook.title + "</td>" +
     "</tr><tr><td scope=\"row\">Автор</td>" +
