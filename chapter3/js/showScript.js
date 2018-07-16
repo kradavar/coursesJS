@@ -20,8 +20,7 @@ function loadJSON() {
 }
 
 function getArgument() {
-  let str = document.location.search.substring(1);
-  let id = str.substring(3);
+  let id = document.location.search.substring(1);
   return id;
 }
 
@@ -30,9 +29,16 @@ function fillInTheTable() {
   allBooks = loadJSON();
 
   let index = getArgument();
+
   let currentBook = allBooks[index];
 
-  tableInfo += " " + currentBook.title "</td>" +
+  for (let i = 0; i < allBooks.length; i++) {
+    if (index == allBooks[i].id) {
+      currentBook = allBooks[i];
+    }
+  }
+
+  tableInfo += " " + currentBook.title + "</td>" +
     "</tr><tr><td scope=\"row\">Автор</td>" +
     "<td> " + currentBook.author + "</td></tr>" +
     "<tr><td scope=\"row\">Издательство</td>" +

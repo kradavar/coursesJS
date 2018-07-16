@@ -40,10 +40,10 @@ function fillInTheTable() {
 			allBooks[i].year + "</td><td>" +
 			allBooks[i].description + "</td><td>" +
 			allBooks[i].audience + "</td>" +
-			"<td><a href=\"#\">Редактировать</a>" +
+			"<td><a href=\"#\">Редактировать </a>" +
 			"<a href=\"#delete-book\" data-toggle=\"modal\">Удалить</a>" +
 			"</td><td><button type=\"button\" class=\"btn btn-primary my-a-btn\">" +
-			"<a href=\"../html/show.html?id=" + allBooks[i].id + "\">Подробнее</a>" +
+			"<a href=\"./html/show.html?" + allBooks[i].id + "\">Подробнее</a>" +
 			"</button></td>";
 	}
 	tableInfo += "</tbody>";
