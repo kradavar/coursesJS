@@ -1,6 +1,32 @@
 let typeOfBook = document.getElementById('choose-type');
-let allBooks = []; // для работы с таблицей главной стр в будущем
+let allBooks = [];
+let xhr = new XMLHttpRequest();
 
+function loadJSON() {
+
+	xhr.open('GET', 'http://localhost:3000/books', false);
+
+	xhr.send();
+	if (xhr.status != 200) {
+		alert(xhr.status + ': ' + xhr.statusText);
+	} else {
+		let textForParser = xhr.responseText;
+		console.log(JSON.parse(textForParser));
+		return JSON.parse(textForParser);
+	}
+}
+
+function sendToServer(body) {
+	xhr.open('POST', 'http://localhost:3000/books', false);
+	xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+	xhr.setRequestHeader('Accept', 'application/json');
+	xhr.send(body);
+	if (xhr.status != 200) {
+		alert(xhr.status + ': ' + xhr.statusText);
+	} else {
+		alert("easy");
+	}
+}
 
 function chooseFormToCreate() {
 
@@ -23,34 +49,60 @@ function chooseFormToCreate() {
 }
 
 function createBook() {
+	allBooks = loadJSON();
+	/*
+		switch (typeOfBook.value) {
+			case 'audio':
+				newBook = new AudioBook();
+				newBook.setLong(document.getElementById('long').value);
+				newBook.setReader(document.getElementById('reader').value);
+				break;
+			case 'studybook':
+				newBook = new StudyBook();
+				newBook.setScience(document.getElementById('science').value);
+				newBook.setIllustration(document.getElementById('illustration').checked);
+				break;
+			default:
+				return alert("Выберите тип книги!");
+		}
 
-	let newBook;
+		newBook.setTitle(document.getElementById('title').value);
+		newBook.setAuthor(document.getElementById('author').value);
+		newBook.setYear(document.getElementById('year').value);
+		newBook.setPubHouse(document.getElementById('publishing-house').value);
+		newBook.setDescription(document.getElementById('description').value);
+		newBook.setAudience(document.getElementById('audience').value);
+	*/
 
+	let book = {};
+	book.id = allBooks.length + 1;
+	book.title = document.getElementById('title').value;
+	book.author = document.getElementById('author').value;
+	book.publishingHouse = document.getElementById('publishing-house').value;
+	book.year = document.getElementById('year').value;
+	book.audience = document.getElementById('audience').value;
+	book.description = document.getElementById('description').value;
 	switch (typeOfBook.value) {
 		case 'audio':
-			newBook = new AudioBook();
-			newBook.setLong(document.getElementById('long').value);
-			newBook.setReader(document.getElementById('reader').value);
+			book.long = document.getElementById('long').value;
+			book.reader = document.getElementById('reader').value;
 			break;
 		case 'studybook':
-			newBook = new StudyBook();
-			newBook.setScience(document.getElementById('science').value);
-			newBook.setIllustration(document.getElementById('illustration').checked);
+			book.science = document.getElementById('science').value;
+			book.illustration = document.getElementById('illustration').checked;
 			break;
 		default:
 			return alert("Выберите тип книги!");
 	}
+	//console.log(book);
 
-	newBook.setTitle(document.getElementById('title').value);
-	newBook.setAuthor(document.getElementById('author').value);
-	newBook.setYear(document.getElementById('year').value);
-	newBook.setPubHouse(document.getElementById('publishing-house').value);
-	newBook.setDescription(document.getElementById('description').value);
-	newBook.setAudience(document.getElementById('audience').value);
+	sendToServer(JSON.stringify(book));
 
-	allBooks.push(newBook);
+	window.location = "../index.html";
+}
 
-	console.log(newBook);
+function goToMainWindow() {
+	window.location = "../index.html";
 }
 
 function Book(title, author, publishingHouse, year, audience, description) {
@@ -72,9 +124,10 @@ function Book(title, author, publishingHouse, year, audience, description) {
 		let regular = /(\d{1,2})-(\d{1,2})/;
 		if (regular.test(audience)) {
 			this.audience = audience;
+		} else {
+			alert("Введите значения наибольшего и наименьшего возрастов через тире!");
+			document.getElementById('audience').value = "";
 		}
-		alert("Введите значения наибольшего и наименьшего возрастов через тире!");
-		document.getElementById('audience').value = "";
 	}
 	this.setDescription = function(description) {
 		this.description = description;
