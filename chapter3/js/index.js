@@ -25,7 +25,7 @@ function fillInTheTable() {
 	let allBooks = loadJSON();
 
 	for (var i = 0; i < allBooks.length; i++) {
-		tableInfo += "<tr><th scope=\"row\">" + allBooks[i].id + "</th><td>" +
+		tableInfo += "<tr><th scope=\"row\">" + (i + 1) + "</th><td>" +
 			allBooks[i].title + "</td><td>" +
 			allBooks[i].author + "</td><td>" +
 			allBooks[i].publishingHouse + "</td><td>" +

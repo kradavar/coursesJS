@@ -18,12 +18,9 @@ function sendToServer(body) {
 }
 
 function chooseFormToCreate() {
-	let elements = document.getElementsByClassName('text-info');
 	let bookType = document.getElementById('choose-type');
 
-	for (var i = 0; i < elements.length; i++) {
-		elements[i].value = "";
-	}
+	document.getElementById('hide').style.display = "none";
 
 	if (bookType.value == "audio") {
 		document.getElementById('audio-form').style.display = "block";
@@ -35,6 +32,8 @@ function chooseFormToCreate() {
 		document.getElementById('audio-form').style.display = "none";
 		document.getElementById('studybook-form').style.display = "block";
 	}
+	document.getElementById('general').style.display = "block";
+	document.getElementById('create-book-btn').disabled = false;
 }
 
 function createBook() {
@@ -42,8 +41,6 @@ function createBook() {
 	let bookType = document.getElementById('choose-type');
 	let book = {};
 
-	// TODO: fix id problem
-	book.id = allBooks.length + 1;
 	book.title = document.getElementById('title').value;
 	book.author = document.getElementById('author').value;
 	book.publishingHouse = document.getElementById('publishing-house').value;
@@ -74,21 +71,37 @@ function goToMainWindow() {
 function Book(title, author, publishingHouse, year, audience, description) {
 
 	this.setTitle = function(title) {
-		this.title = title;
+		if (title == null) {
+			alert("Пожалуйста, введите название книги.");
+		} else {
+			this.title = title;
+		}
 	}
 	this.setAuthor = function(author) {
-		this.author = author;
+		if (author == null) {
+			alert("Пожалуйста, введите имя автора.");
+		} else {
+			this.author = author;
+		}
 	}
 	this.setPubHouse = function(publishingHouse) {
-		this.publishingHouse = publishingHouse;
+		if (publishingHouse == null) {
+			alert("Пожалуйста, введите название издательства.");
+		} else {
+			this.publishingHouse = publishingHouse;
+		}
 	}
 	this.setYear = function(year) {
-		this.year = year;
+		if ((year == null) || (year > 2018)) {
+			alert("Введите настоящий год.");
+		} else {
+			this.year = year;
+		}
 	}
 	this.setAudience = function(audience) {
 
 		let regular = /(\d{1,2})-(\d{1,2})/;
-		if (regular.test(audience)) {
+		if ((regular.test(audience)) && (audience != null)) {
 			this.audience = audience;
 		} else {
 			alert("Введите значения наибольшего и наименьшего возрастов через тире!");
@@ -96,7 +109,11 @@ function Book(title, author, publishingHouse, year, audience, description) {
 		}
 	}
 	this.setDescription = function(description) {
-		this.description = description;
+		if (description == null) {
+			alert("Пожалуйста, добавьте описание книги.");
+		} else {
+			this.description = description;
+		}
 	}
 
 	this.getTitle = function() {
