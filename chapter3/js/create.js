@@ -18,7 +18,12 @@ function sendToServer(body) {
 }
 
 function chooseFormToCreate() {
+	// let elements = document.getElementsByClassName('text-info');
 	let bookType = document.getElementById('choose-type');
+
+	// for (var i = 0; i < elements.length; i++) {
+	// 	elements[i].value = "";
+	// }
 
 	document.getElementById('hide').style.display = "none";
 
