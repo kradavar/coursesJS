@@ -15,7 +15,6 @@ function chooseFormToCreate() {
 		document.getElementById('studybook-form').style.display = "none";
 		document.getElementById('reader').required = true;
 		document.getElementById('long').required = true;
-		document.getElementById('illustration').required = false;
 		document.getElementById('science').required = false;
 	}
 
@@ -24,7 +23,6 @@ function chooseFormToCreate() {
 		document.getElementById('studybook-form').style.display = "block";
 		document.getElementById('reader').required = false;
 		document.getElementById('long').required = false;
-		document.getElementById('illustration').required = true;
 		document.getElementById('science').required = true;
 
 	}

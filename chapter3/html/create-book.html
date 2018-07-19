@@ -12,7 +12,7 @@
   <div class="contain">
     <h2>Новая книга: </h2>
     <div class="create-form">
-      <form onsubmit="createBook()">
+      <form onsubmit="createBook(); return false;">
         <div class="form-group">
           <label for="choose-type">Тип записи: </label>
           <select class="form-control selectpicker" id="choose-type" onchange="chooseFormToCreate()">
