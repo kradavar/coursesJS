@@ -26,9 +26,19 @@
 }
 
 .contain h2 {
-	border-bottom: 1px solid black ; 
+	border-bottom: 1px solid black;
 }
 
 .general p {
 	margin: 12px 0;
+}
+
+input:invalid {
+	background: #fce0e0;
+	border: 1px solid #a92c2c;
+}
+
+input:valid {
+	background: #baf3ac;
+	border: 1px solid #4e8a3f;
 }

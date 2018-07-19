@@ -13,11 +13,20 @@ function chooseFormToCreate() {
 	if (bookType.value == "audio") {
 		document.getElementById('audio-form').style.display = "block";
 		document.getElementById('studybook-form').style.display = "none";
+		document.getElementById('reader').required = true;
+		document.getElementById('long').required = true;
+		document.getElementById('illustration').required = false;
+		document.getElementById('science').required = false;
 	}
 
 	if (bookType.value == "studybook") {
 		document.getElementById('audio-form').style.display = "none";
 		document.getElementById('studybook-form').style.display = "block";
+		document.getElementById('reader').required = false;
+		document.getElementById('long').required = false;
+		document.getElementById('illustration').required = true;
+		document.getElementById('science').required = true;
+
 	}
 	document.getElementById('general').style.display = "block";
 	document.getElementById('create-book-btn').disabled = false;
@@ -25,11 +34,7 @@ function chooseFormToCreate() {
 
 function createBook() {
 	let bookType = document.getElementById('choose-type');
-	AudioBook.prototype = Object.create(Book.prototype);
-	AudioBook.prototype.constructor = AudioBook;
 
-	StudyBook.prototype = Object.create(Book);
-	StudyBook.prototype.constructor = StudyBook;
 	let book;
 	let title = document.getElementById('title').value;
 	let author = document.getElementById('author').value;
@@ -78,3 +83,8 @@ function StudyBook(title, author, audience, description, publishingHouse, year, 
 	this.science = science;
 	this.illustration = illustration;
 }
+AudioBook.prototype = Object.create(Book.prototype);
+AudioBook.prototype.constructor = AudioBook;
+
+StudyBook.prototype = Object.create(Book);
+StudyBook.prototype.constructor = StudyBook;
