@@ -10,6 +10,9 @@ function chooseFormToCreate() {
 	let bookType = document.getElementById('choose-type');
 	document.getElementById('hide').style.display = "none";
 
+	bookType.classList.remove("choose-red");
+	bookType.classList.add("choose-green");
+
 	if (bookType.value == "audio") {
 		document.getElementById('audio-form').style.display = "block";
 		document.getElementById('studybook-form').style.display = "none";

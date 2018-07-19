@@ -3,20 +3,73 @@
 	padding: 0;
 }
 
+body {
+	background-color: #f1c794;
+}
+
+.header {
+	height: 50px;
+	margin: 0 auto;
+	background-color: #9D6C30;
+	text-height: 50px;
+	color: #68A988;
+}
+
+.table-hover tbody tr:hover td,
+.table-hover tbody tr:hover th {
+	background-color: #F8E0C3;
+}
+
+#head-container {
+	padding: 0;
+}
+
+#books-brand {
+	margin: 0;
+	padding-top: 15px;
+}
+
+thead {
+	background-color: #68A988;
+}
+
 .container {
-	margin: 25px auto;
-	padding: 10px;
+	margin: 0 auto;
+	padding: 15px;
+	width: 1150px;
 }
 
 #create-btn {
-	margin: 5px;
-	margin-bottom: 15px;
-	padding: 15px 20px;
+	margin: 7px;
+	background-color: #9D6C30;
+	border: none;
 }
 
-.my-a-btn a {
+#create-btn:hover {
+	border-color: #f1c794;
+	background-color: #f1c794;
+}
+
+.my-a-btn {
 	color: white;
 	text-decoration: none;
+	background-color: #6F74A7;
+}
+
+.edit-href {
+	color: #6F74A7;
+}
+
+.delete-href {
+	color: #68A988;
+}
+
+.edit-href:hover {
+	color: #242A6D;
+}
+
+.delete-href:hover {
+	color: #226E47;
 }
 
 .contain {
@@ -33,12 +86,14 @@
 	margin: 12px 0;
 }
 
-input:invalid {
+input:invalid,
+.choose-red {
 	background: #fce0e0;
 	border: 1px solid #a92c2c;
 }
 
-input:valid {
+input:valid,
+.choose-green {
 	background: #baf3ac;
 	border: 1px solid #4e8a3f;
 }

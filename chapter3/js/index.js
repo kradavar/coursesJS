@@ -32,12 +32,12 @@ function fillInTheTable() {
 			allBooks[i].year + "</td><td>" +
 			allBooks[i].description + "</td><td>" +
 			allBooks[i].audience + "</td>" +
-			"<td><a href=\"./html/edit.html?" + allBooks[i].id + "\">Редактировать </a>" +
+			"<td><a href=\"./html/edit.html?" + allBooks[i].id + "\" class = \"edit-href\">Редактировать </a>" +
 			"<a href=\"#\" data-toggle=\"modal\" data-book-id = \"" +
 			allBooks[i].id + "\" data-target=\"#delete-book\" data-record-title=\"" +
-			allBooks[i].title + "\">Удалить</a></td><td><button type=\"button\" " +
-			" class=\"btn btn-primary my-a-btn\"><a href=\"./html/show.html?" +
-			allBooks[i].id + "\">Подробнее</a></button></td>";
+			allBooks[i].title + "\" class = \"delete-href\">Удалить</a></td><td><a href=\"./html/show.html?" +
+			allBooks[i].id + "\"><button type=\"button\" " +
+			" class=\"btn btn-primary my-a-btn\">Подробнее</button></a></td>";
 	}
 	tableInfo += "</tbody>";
 	table.innerHTML = tableInfo;

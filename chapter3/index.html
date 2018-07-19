@@ -9,13 +9,24 @@
 </head>
 
 <body onload="loadJSON()">
+  <!-- navbar -->
+  <div class="navbar header" role="navigation">
+    <div class="navbar-header">
+      <a class="navbar-brand mb-0 h1" id="books-brand" href="#"><b>КНИГИ</b></a>
+    </div>
+    <div class="navbar-collapse collapse move">
+      <div class="cont">
+        <a href="html/create-book.html">
+          <button type="button" id="create-btn" class="btn btn-primary my-a-btn">
+            Создать
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!----->
   <div class="container">
     <div class="for-button">
-      <a href="html/create-book.html">
-        <button type="button" id="create-btn" class="btn btn-primary my-a-btn">
-          Создать
-        </button>
-      </a>
     </div>
     <div id="for-table">
     </div>
