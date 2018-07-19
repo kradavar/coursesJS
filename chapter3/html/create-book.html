@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
   <meta charset="UTF-8">
-  <title>Создать аудиокнигу</title>
+  <title>Создать книгу</title>
   <link href="../css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -14,7 +14,7 @@
     <div class="create-form">
       <div class="form-group">
         <label for="choose-type">Тип записи: </label>
-        <select class="form-control selectpicker" id="choose-type" placeholder="Выберите тип книги" title="Выберите тип книги" onchange="chooseFormToCreate()">
+        <select class="form-control selectpicker" id="choose-type" onchange="chooseFormToCreate()">
           <option value="" id="hide" disabled selected>Выберите тип книги</option>
           <option value="audio">Аудиокнига</option>
           <option value="studybook">Учебник</option>

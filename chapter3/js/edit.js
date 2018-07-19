@@ -12,6 +12,32 @@ function loadJSON() {
   }
 }
 
+function chooseFormToCreate() {
+  let bookType = document.getElementById('choose-type');
+
+  if (bookType.value == "audio") {
+    document.getElementById('audio-form').style.display = "block";
+    document.getElementById('studybook-form').style.display = "none";
+  }
+
+  if (bookType.value == "studybook") {
+    document.getElementById('audio-form').style.display = "none";
+    document.getElementById('studybook-form').style.display = "block";
+  }
+}
+
+
+function editBook(book) {
+  let url = "http://localhost:3000/books/" + getIdOfBook();
+  let xhr = new XMLHttpRequest();
+
+  xhr.open('PUT', url, false);
+  xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+  xhr.setRequestHeader('Accept', 'application/json');
+  xhr.send(JSON.stringify(book));
+
+}
+
 function getIdOfBook() {
   return document.location.search.substring(1);
 }
@@ -65,15 +91,7 @@ function updateBook() {
     default:
       return alert("Выберите тип книги!");
   }
-  // TODO: move into another function
-  let url = "http://localhost:3000/books/" + getIdOfBook();
-  let xhr = new XMLHttpRequest();
-
-  xhr.open('PUT', url, false);
-  xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-  xhr.setRequestHeader('Accept', 'application/json');
-  xhr.send(JSON.stringify(book));
-
+  editBook(book);
   goToMainWindow();
 }
 
