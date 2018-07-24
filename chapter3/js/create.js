@@ -1,5 +1,5 @@
 function sendToServer(body) {
-	let xhr = new XMLHttpRequest();
+	var xhr = new XMLHttpRequest();
 	xhr.open('POST', 'http://localhost:3000/books', false);
 	xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 	xhr.setRequestHeader('Accept', 'application/json');
@@ -7,11 +7,11 @@ function sendToServer(body) {
 }
 
 function chooseFormToCreate() {
-	let bookType = document.getElementById('choose-type');
+	var bookType = document.getElementById('choose-type');
 	document.getElementById('hide').style.display = "none";
 
 	bookType.classList.remove("choose-red");
-	bookType.classList.add("choose-green");
+	bookType.classList.add("choose - green");
 
 	if (bookType.value == "audio") {
 		document.getElementById('audio-form').style.display = "block";
@@ -34,25 +34,25 @@ function chooseFormToCreate() {
 }
 
 function createBook() {
-	let bookType = document.getElementById('choose-type');
+	var bookType = document.getElementById('choose-type');
 
-	let book;
-	let title = document.getElementById('title').value;
-	let author = document.getElementById('author').value;
-	let publishingHouse = document.getElementById('publishing-house').value;
-	let year = document.getElementById('year').value;
-	let audience = document.getElementById('audience').value;
-	let description = document.getElementById('description').value;
+	var book;
+	var title = document.getElementById('title').value;
+	var author = document.getElementById('author').value;
+	var publishingHouse = document.getElementById('publishing-house').value;
+	var year = document.getElementById('year').value;
+	var audience = document.getElementById('audience').value;
+	var description = document.getElementById('description').value;
 
 	if (bookType.value == "audio") {
-		let long = document.getElementById('long').value;
-		let reader = document.getElementById('reader').value;
+		var long = document.getElementById('long').value;
+		var reader = document.getElementById('reader').value;
 		book = new AudioBook(title, author, audience, description, publishingHouse, year, long, reader);
 	}
 
 	if (bookType.value == "studybook") {
-		let science = document.getElementById('science').value;
-		let illustration = document.getElementById('illustration').value;
+		var science = document.getElementById('science').value;
+		var illustration = document.getElementById('illustration').value;
 
 		book = new StudyBook(title, author, audience, description, publishingHouse, year, science, illustration);
 	}

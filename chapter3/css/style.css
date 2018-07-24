@@ -60,7 +60,7 @@ thead {
 	color: #6F74A7;
 }
 
-.delete-href {
+.devare-href {
 	color: #68A988;
 }
 
@@ -68,7 +68,7 @@ thead {
 	color: #242A6D;
 }
 
-.delete-href:hover {
+.devare-href:hover {
 	color: #226E47;
 }
 
@@ -87,8 +87,7 @@ thead {
 }
 
 input:invalid,
-.choose-red {
-	background: #fce0e0;
+.choose-red 	{	background: #fce0e0;
 	border: 1px solid #a92c2c;
 }
 

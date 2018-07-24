@@ -1,8 +1,8 @@
 window.onload = loadBook();
 
 function loadJSON() {
-  let xhr = new XMLHttpRequest();
-  let url = "http://localhost:3000/books/" + getIdOfBook();
+  var xhr = new XMLHttpRequest();
+  var url = "http://localhost:3000/books/" + getIdOfBook();
   xhr.open('GET', url, false);
   xhr.send();
   if (xhr.status != 200) {
@@ -13,7 +13,7 @@ function loadJSON() {
 }
 
 function chooseFormToCreate() {
-  let bookType = document.getElementById('choose-type');
+  var bookType = document.getElementById('choose-type');
 
   if (bookType.value == "audio") {
     document.getElementById('audio-form').style.display = "block";
@@ -28,8 +28,8 @@ function chooseFormToCreate() {
 
 
 function editBook(book) {
-  let url = "http://localhost:3000/books/" + getIdOfBook();
-  let xhr = new XMLHttpRequest();
+  var url = "http://localhost:3000/books/" + getIdOfBook();
+  var xhr = new XMLHttpRequest();
 
   xhr.open('PUT', url, false);
   xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
@@ -43,7 +43,7 @@ function getIdOfBook() {
 }
 
 function loadBook() {
-  let currentBook = loadJSON();
+  var currentBook = loadJSON();
 
   if (currentBook.long != undefined) {
     document.getElementById('choose-type').value = "audio";
@@ -70,8 +70,8 @@ function loadBook() {
 }
 
 function updateBook() {
-  let book = {};
-  let bookType = document.getElementById('choose-type');
+  var book = {};
+  var bookType = document.getElementById('choose-type');
 
   book.title = document.getElementById('title').value;
   book.author = document.getElementById('author').value;
