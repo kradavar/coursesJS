@@ -1,8 +1,17 @@
 window.onload = loadBook();
+let bookID = () => document.location.search.substring(1);
+let editBook = book => {
+  let url = "http://localhost:3000/books/" + bookID();
+  let xhr = new XMLHttpRequest();
+  xhr.open('PUT', url, false);
+  xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+  xhr.setRequestHeader('Accept', 'application/json');
+  xhr.send(JSON.stringify(book));
+}
 
 function loadJSON() {
-  var xhr = new XMLHttpRequest();
-  var url = "http://localhost:3000/books/" + getIdOfBook();
+  let xhr = new XMLHttpRequest();
+  let url = "http://localhost:3000/books/" + bookID();
   xhr.open('GET', url, false);
   xhr.send();
   if (xhr.status != 200) {
@@ -13,7 +22,7 @@ function loadJSON() {
 }
 
 function chooseFormToCreate() {
-  var bookType = document.getElementById('choose-type');
+  let bookType = document.getElementById('choose-type');
 
   if (bookType.value == "audio") {
     document.getElementById('audio-form').style.display = "block";
@@ -26,10 +35,10 @@ function chooseFormToCreate() {
   }
 }
 
-
+/*
 function editBook(book) {
-  var url = "http://localhost:3000/books/" + getIdOfBook();
-  var xhr = new XMLHttpRequest();
+  let url = "http://localhost:3000/books/" + bookID();
+  let xhr = new XMLHttpRequest();
 
   xhr.open('PUT', url, false);
   xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
@@ -37,13 +46,9 @@ function editBook(book) {
   xhr.send(JSON.stringify(book));
 
 }
-
-function getIdOfBook() {
-  return document.location.search.substring(1);
-}
-
+*/
 function loadBook() {
-  var currentBook = loadJSON();
+  let currentBook = loadJSON();
 
   if (currentBook.long != undefined) {
     document.getElementById('choose-type').value = "audio";
@@ -70,8 +75,8 @@ function loadBook() {
 }
 
 function updateBook() {
-  var book = {};
-  var bookType = document.getElementById('choose-type');
+  let book = {};
+  let bookType = document.getElementById('choose-type');
 
   book.title = document.getElementById('title').value;
   book.author = document.getElementById('author').value;

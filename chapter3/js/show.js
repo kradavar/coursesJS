@@ -1,8 +1,9 @@
 window.onload = fillInTheTable();
 
 function loadJSON() {
-  var url = "http://localhost:3000/books/" + getBookId();
-  var xhr = new XMLHttpRequest();
+  let bookID = () => document.location.search.substring(1);
+  let url = "http://localhost:3000/books/" + bookID();
+  let xhr = new XMLHttpRequest();
   xhr.open('GET', url, false);
   xhr.send();
   if (xhr.status != 200) {
@@ -12,17 +13,13 @@ function loadJSON() {
   }
 }
 
-function getBookId() {
-  return document.location.search.substring(1);
-}
-
 function fillInTheTable() {
-  var table = document.createElement('table');
-  var tableInfo = "<thead><tr><th>Свойство</th><th>Значение</th></tr>" +
+  let table = document.createElement('table');
+  let tableInfo = "<thead><tr><th>Свойство</th><th>Значение</th></tr>" +
     "</thead><tbody><tr><td scope=\"row\">Название</td>" +
     "<td>";
 
-  var currentBook = loadJSON();
+  let currentBook = loadJSON();
 
   tableInfo += " " + currentBook.title + "</td>" +
     "</tr><tr><td scope=\"row\">Автор</td>" +
@@ -44,7 +41,7 @@ function fillInTheTable() {
   }
 
   if (currentBook.science != undefined) {
-    var tempIllustr = "Нет";
+    let tempIllustr = "Нет";
     if (currentBook.illustration) {
       tempIllustr = "Есть";
     }
@@ -54,7 +51,7 @@ function fillInTheTable() {
   }
 
   table.innerHTML = tableInfo;
-  var parent = document.getElementById('for-table');
+  let parent = document.getElementById('for-table');
   parent.appendChild(table);
   table.className = "table table-bordered table-hover";
 }

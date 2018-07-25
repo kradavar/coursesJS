@@ -1,42 +1,44 @@
 window.onload = fillInTheTable();
 
 function loadJSON() {
-	var xhr = new XMLHttpRequest();
+	let xhr = new XMLHttpRequest();
 	xhr.open('GET', 'http://localhost:3000/books', false);
 
 	xhr.send();
 	if (xhr.status != 200) {
 		alert(xhr.status + ': ' + xhr.statusText);
 	} else {
-		var textForParser = xhr.responseText;
+		let textForParser = xhr.responseText;
 		console.log(JSON.parse(textForParser));
 		return JSON.parse(textForParser);
 	}
 }
 
 function fillInTheTable() {
-	var table = document.createElement('table');
-	var tableInfo = "<thead><tr><th>#</th>" +
+	let table = document.createElement('table');
+	let tableInfo = "<thead><tr><th>#</th>" +
 		"<th>Название</th><th>Автор</th><th>Издательство</th>" +
 		"<th>Год издания</th><th>Краткое описание</th><th>Возраст аудитории</th>" +
 		"<th> </th><th> </th></tr></thead><tbody>";
-	var parent = document.getElementById('for-table');
+	let parent = document.getElementById('for-table');
 
-	var allBooks = loadJSON();
+	let allBooks = loadJSON();
 
-	for (var i = 0; i < allBooks.length; i++) {
+	for (let i = 0; i < allBooks.length; i++) {
+
+		let { title, author, publishingHouse, year, description, audience, id } = allBooks[i];
 		tableInfo += "<tr><th scope=\"row\">" + (i + 1) + "</th><td>" +
-			allBooks[i].title + "</td><td>" +
-			allBooks[i].author + "</td><td>" +
-			allBooks[i].publishingHouse + "</td><td>" +
-			allBooks[i].year + "</td><td>" +
-			allBooks[i].description + "</td><td>" +
-			allBooks[i].audience + "</td>" +
-			"<td><a href=\"./html/edit.html?" + +"\" class = \"edit-href\">Редактировать </a>" +
+			title + "</td><td>" +
+			author + "</td><td>" +
+			publishingHouse + "</td><td>" +
+			year + "</td><td>" +
+			description + "</td><td>" +
+			audience + "</td>" +
+			"<td><a href=\"./html/edit.html?" + id + "\" class = \"edit-href\">Редактировать </a>" +
 			"<a href=\"#\" data-toggle=\"modal\" data-book-id = \"" +
-			allBooks[i].id + "\" data-target=\"#devare-book\" data-record-title=\"" +
-			allBooks[i].title + "\" class = \"devare-href\">Удалить</a></td><td><a href=\"./html/show.html?" +
-			allBooks[i].id + "\"><button type=\"button\" " +
+			id + "\" data-target=\"#devare-book\" data-record-title=\"" +
+			title + "\" class = \"devare-href\">Удалить</a></td><td><a href=\"./html/show.html?" +
+			id + "\"><button type=\"button\" " +
 			" class=\"btn btn-primary my-a-btn\">Подробнее</button></a></td>";
 	}
 	tableInfo += "</tbody>";
@@ -46,10 +48,10 @@ function fillInTheTable() {
 }
 
 $('#devare-book').on('click', '.btn-ok', function(e) {
-	var $modalDiv = $(e.delegateTarget);
-	var id = $(this).data('bookId');
-	var url = "http://localhost:3000/books/" + id;
-	var xhr = new XMLHttpRequest();
+	let $modalDiv = $(e.delegateTarget);
+	let id = $(this).data('bookId');
+	let url = "http://localhost:3000/books/" + id;
+	let xhr = new XMLHttpRequest();
 
 	xhr.open('DELETE', url, false);
 	xhr.send();
@@ -62,7 +64,7 @@ $('#devare-book').on('click', '.btn-ok', function(e) {
 });
 
 $('#devare-book').on('show.bs.modal', function(e) {
-	var data = $(e.relatedTarget).data();
+	let data = $(e.relatedTarget).data();
 	$('.title', this).text(data.recordTitle);
 	$('.btn-ok', this).data('bookId', data.bookId);
 });
