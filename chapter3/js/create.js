@@ -11,7 +11,7 @@ function chooseFormToCreate() {
 	document.getElementById('hide').style.display = "none";
 
 	bookType.classList.remove("choose-red");
-	bookType.classList.add("choose - green");
+	bookType.classList.add("choose-green");
 
 	if (bookType.value == "audio") {
 		document.getElementById('audio-form').style.display = "block";
@@ -33,28 +33,33 @@ function chooseFormToCreate() {
 	document.getElementById('create-book-btn').disabled = false;
 }
 
+let getFormValues = () => {
+	let formValues = [];
+	formValues.push(document.getElementById('title').value);
+	formValues.push(document.getElementById('author').value);
+	formValues.push(document.getElementById('audience').value);
+	formValues.push(document.getElementById('description').value);
+	formValues.push(document.getElementById('publishing-house').value);
+	formValues.push(document.getElementById('year').value);
+	return formValues;
+}
+
 function createBook() {
 	let bookType = document.getElementById('choose-type');
-
 	let book;
-	let title = document.getElementById('title').value;
-	let author = document.getElementById('author').value;
-	let publishingHouse = document.getElementById('publishing-house').value;
-	let year = document.getElementById('year').value;
-	let audience = document.getElementById('audience').value;
-	let description = document.getElementById('description').value;
+	const bookParams = getFormValues();
 
 	if (bookType.value == "audio") {
 		let long = document.getElementById('long').value;
 		let reader = document.getElementById('reader').value;
-		book = new AudioBook(title, author, audience, description, publishingHouse, year, long, reader);
+		book = new AudioBook(...bookParams, long, reader);
 	}
 
 	if (bookType.value == "studybook") {
 		let science = document.getElementById('science').value;
 		let illustration = document.getElementById('illustration').value;
 
-		book = new StudyBook(title, author, audience, description, publishingHouse, year, science, illustration);
+		book = new StudyBook(...bookParams, science, illustration);
 	}
 	sendToServer(JSON.stringify(book));
 	goToMainWindow();

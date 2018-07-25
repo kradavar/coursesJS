@@ -35,18 +35,6 @@ function chooseFormToCreate() {
   }
 }
 
-/*
-function editBook(book) {
-  let url = "http://localhost:3000/books/" + bookID();
-  let xhr = new XMLHttpRequest();
-
-  xhr.open('PUT', url, false);
-  xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-  xhr.setRequestHeader('Accept', 'application/json');
-  xhr.send(JSON.stringify(book));
-
-}
-*/
 function loadBook() {
   let currentBook = loadJSON();
 
