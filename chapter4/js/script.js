@@ -1,5 +1,6 @@
 function start() {
   let button = document.getElementById('color-btn');
+  let secondBtn = document.getElementById('onecolor-btn');
   let indexGen = generate();
   let table = document.createElement('table');
   let tableInfo = "<thead><tr><th>#</th>" +
@@ -16,6 +17,7 @@ function start() {
     table.setAttribute("id", "my-table");
     parent.appendChild(table);
     button.style.display = "block";
+    secondBtn.style.display = "block";
   } else {
     alert("Количество строк должно быть меньше 10");
     location.reload();
@@ -27,12 +29,6 @@ function* generate(numberOfRows) {
   for (; tableIndex < 11; tableIndex++) {
     yield "<tr><td>" + tableIndex + "</td><td>Сгенерированная строка номер " + tableIndex + "</td></tr>";
   }
-}
-
-function recolorRow(row) {
-  setTimeout(function() {
-    row.style.backgroundColor = "red";
-  }, 60000);
 }
 
 function makeIterator(rows) {
@@ -48,12 +44,23 @@ function changeRowsColors() {
   let table = document.getElementById('my-table');
   const rows = table.rows;
   let iterator = makeIterator(rows);
-  // let first = iterator.next();
-  // console.log(first);
   for (let row of rows) {
     let index = iterator.next();
     setTimeout(function() {
       row.style.backgroundColor = "red";
     }, index.value * 1000);
+  }
+}
+
+function changeOneRowColor() {
+  let table = document.getElementById('my-table');
+  const rows = table.rows;
+  let iterator = makeIterator(rows);
+  const rowToChange = +prompt("Укажите номер строки (от 1 до " + (rows.length - 1) + "), цвет которой вы хотите изменить");
+  for (let row of rows) {
+    let index = iterator.next();
+    if (index.value == rowToChange) {
+      row.style.backgroundColor = "green";
+    }
   }
 }
