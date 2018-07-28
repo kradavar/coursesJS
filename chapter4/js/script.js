@@ -29,8 +29,31 @@ function* generate(numberOfRows) {
   }
 }
 
+function recolorRow(row) {
+  setTimeout(function() {
+    row.style.backgroundColor = "red";
+  }, 60000);
+}
+
+function makeIterator(rows) {
+  let nextIndex = 0;
+  return {
+    next: function() {
+      return nextIndex < rows.length ? { value: nextIndex++, done: false } : { done: true };
+    }
+  }
+}
+
 function changeRowsColors() {
   let table = document.getElementById('my-table');
-  let rows = table.rows;
-  console.log(rows);
+  const rows = table.rows;
+  let iterator = makeIterator(rows);
+  // let first = iterator.next();
+  // console.log(first);
+  for (let row of rows) {
+    let index = iterator.next();
+    setTimeout(function() {
+      row.style.backgroundColor = "red";
+    }, index.value * 1000);
+  }
 }
