@@ -1,6 +1,7 @@
 function start() {
   let button = document.getElementById('color-btn');
   let secondBtn = document.getElementById('onecolor-btn');
+  let mixinBtn = document.getElementById('mixin');
   let indexGen = generate();
   let table = document.createElement('table');
   let tableInfo = "<thead><tr><th>#</th>" +
@@ -18,6 +19,7 @@ function start() {
     parent.appendChild(table);
     button.style.display = "block";
     secondBtn.style.display = "block";
+    mixinBtn.style.display = "block";
   } else {
     alert("Количество строк должно быть меньше 10");
     location.reload();
@@ -63,4 +65,41 @@ function changeOneRowColor() {
       row.style.backgroundColor = "green";
     }
   }
+}
+
+class TopCloth {
+  constructor() {
+    this.material = "хлопок";
+  }
+  topMethod() {
+    console.log("Это верхняя часть одежды.");
+  }
+}
+
+let MixinBottom = superclass => class extends superclass {
+  constructor() {
+    super();
+    this.length = "макси";
+  }
+
+  bottomMethod() {
+    console.log("Это нижняя часть одежды");
+  }
+}
+
+class Overalls extends MixinBottom(TopCloth) {
+  overallsMethod() {
+    console.log("Это комбинезон!:)");
+  }
+}
+
+function showMixin() {
+  alert("Результат выполнения в консоли:)");
+  let overall = new Overalls();
+  overall.overallsMethod();
+  overall.bottomMethod();
+  overall.topMethod();
+
+  console.log(overall.material);
+  console.log(overall.length);
 }
