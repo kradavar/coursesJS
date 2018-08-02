@@ -45,9 +45,21 @@ thead {
 	border: none;
 }
 
-#create-btn:hover {
+#search-input {
+	border-color: #9D6C30;
+	background-color: #f1c794;
+}
+
+#create-btn:hover,
+#search-btn:hover {
 	border-color: #f1c794;
 	background-color: #f1c794;
+}
+
+#search-btn {
+	background-color: #9D6C30;
+	border: none;
+	color: white;
 }
 
 .my-a-btn {
@@ -87,7 +99,8 @@ thead {
 }
 
 input:invalid,
-.choose-red 	{	background: #fce0e0;
+.choose-red {
+	background: #fce0e0;
 	border: 1px solid #a92c2c;
 }
 

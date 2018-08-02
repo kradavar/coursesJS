@@ -68,3 +68,16 @@ $('#devare-book').on('show.bs.modal', function(e) {
 	$('.title', this).text(data.recordTitle);
 	$('.btn-ok', this).data('bookId', data.bookId);
 });
+
+function findBook() {
+	let allBooks = loadJSON();
+	let parameter = document.getElementById('search-input').value;
+	for (let book of allBooks) {
+		if (book.title == parameter) {
+			let url = "./html/show.html?" + book.id;
+			window.location.assign(url);
+			return false;
+		}
+	}
+	return alert("Такой книги не найдено!");
+}

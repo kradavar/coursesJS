@@ -17,11 +17,17 @@
     </div>
     <div class="navbar-collapse collapse move">
       <div class="cont">
-        <a href="html/create-book.html">
+        <a class="navbar-left" href="html/create-book.html">
           <button type="button" id="create-btn" class="btn btn-primary my-a-btn">
             Создать
           </button>
         </a>
+        <form class="navbar-form navbar-left" role="search" onsubmit="findBook();return false;">
+          <div class="form-group">
+            <input type="text" id="search-input" class="form-control" placeholder="Введите название книги..." />
+          </div>
+          <button type="submit" id="search-btn" class="btn btn-default">Найти</button>
+        </form>
       </div>
     </div>
   </div>
