@@ -1,7 +1,5 @@
 function start() {
-  let button = document.getElementById('color-btn');
-  let secondBtn = document.getElementById('onecolor-btn');
-  let mixinBtn = document.getElementById('mixin');
+  let buttons = document.getElementsByTagName('button');
   let indexGen = generate();
   let table = document.createElement('table');
   let tableInfo = "<thead><tr><th>#</th>" +
@@ -17,9 +15,9 @@ function start() {
     table.className = "table table-bordered table-hover";
     table.setAttribute("id", "my-table");
     parent.appendChild(table);
-    button.style.display = "block";
-    secondBtn.style.display = "block";
-    mixinBtn.style.display = "block";
+    for (let button of buttons) {
+      button.style.display = "block";
+    }
   } else {
     alert("Количество строк должно быть меньше 10");
     location.reload();
@@ -102,4 +100,13 @@ function showMixin() {
 
   console.log(overall.material);
   console.log(overall.length);
+}
+
+function setLocalization() {
+  let currentDate = new Date();
+
+  let l10nEN = new Intl.DateTimeFormat("en-US");
+  let l10nDE = new Intl.DateTimeFormat("de-DE");
+  console.log(l10nEN.format(currentDate));
+  console.log(l10nDE.format(currentDate));
 }
