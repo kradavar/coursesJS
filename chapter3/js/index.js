@@ -1,15 +1,17 @@
-window.onload = loadJSON();
+window.onload = loadBooks();
 
 function loadJSON() {
-	fetch('http://localhost:3000/books').then(function(response) {
+	return fetch('http://localhost:3000/books').then(function(response) {
 		if (response.ok) {
 			return response.json();
 		} else {
 			alert("Ошибка" + response.status);
 		}
-	}).then(function(allBooks) {
-		fillInTheTable(allBooks);
 	});
+}
+
+function loadBooks() {
+	loadJSON().then(allBooks => fillInTheTable(allBooks));
 }
 
 function fillInTheTable(allBooks) {
@@ -65,16 +67,15 @@ $('#devare-book').on('show.bs.modal', function(e) {
 });
 
 function findBook() {
-
-	// разобраться с этим
-	let allBooks = loadJSON();
-	let parameter = document.getElementById('search-input').value;
-	for (let book of allBooks) {
-		if (book.title == parameter) {
-			let url = "./html/show.html?" + book.id;
-			window.location.assign(url);
-			return false;
+	loadJSON().then(allBooks => {
+		let parameter = document.getElementById('search-input').value;
+		for (let book of allBooks) {
+			if (book.title.toLowerCase() == parameter.toLowerCase()) {
+				let url = "./html/show.html?" + book.id;
+				window.location.assign(url);
+				return false;
+			}
 		}
-	}
-	return alert("Такой книги не найдено!");
+		return alert("Такой книги не найдено!");
+	});
 }
