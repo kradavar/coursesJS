@@ -1,28 +1,24 @@
-window.onload = fillInTheTable();
+window.onload = loadJSON();
 
 function loadJSON() {
-	let xhr = new XMLHttpRequest();
-	xhr.open('GET', 'http://localhost:3000/books', false);
-
-	xhr.send();
-	if (xhr.status != 200) {
-		alert(xhr.status + ': ' + xhr.statusText);
-	} else {
-		let textForParser = xhr.responseText;
-		console.log(JSON.parse(textForParser));
-		return JSON.parse(textForParser);
-	}
+	fetch('http://localhost:3000/books').then(function(response) {
+		if (response.ok) {
+			return response.json();
+		} else {
+			alert("Ошибка" + response.status);
+		}
+	}).then(function(allBooks) {
+		fillInTheTable(allBooks);
+	});
 }
 
-function fillInTheTable() {
+function fillInTheTable(allBooks) {
 	let table = document.createElement('table');
 	let tableInfo = "<thead><tr><th>#</th>" +
 		"<th>Название</th><th>Автор</th><th>Издательство</th>" +
 		"<th>Год издания</th><th>Краткое описание</th><th>Возраст аудитории</th>" +
 		"<th> </th><th> </th></tr></thead><tbody>";
 	let parent = document.getElementById('for-table');
-
-	let allBooks = loadJSON();
 
 	for (let i = 0; i < allBooks.length; i++) {
 
@@ -51,16 +47,15 @@ $('#devare-book').on('click', '.btn-ok', function(e) {
 	let $modalDiv = $(e.delegateTarget);
 	let id = $(this).data('bookId');
 	let url = "http://localhost:3000/books/" + id;
-	let xhr = new XMLHttpRequest();
 
-	xhr.open('DELETE', url, false);
-	xhr.send();
-	$modalDiv.addClass('loading');
-	setTimeout(function() {
-		$modalDiv.modal('hide').removeClass('loading');
-	}, 1000)
+	fetch(url, {
+		method: 'DELETE'
+	}).then(function(response) {
+		if (response.ok) {
+			location.reload();
+		}
+	});
 
-	location.reload();
 });
 
 $('#devare-book').on('show.bs.modal', function(e) {
@@ -70,6 +65,8 @@ $('#devare-book').on('show.bs.modal', function(e) {
 });
 
 function findBook() {
+
+	// разобраться с этим
 	let allBooks = loadJSON();
 	let parameter = document.getElementById('search-input').value;
 	for (let book of allBooks) {

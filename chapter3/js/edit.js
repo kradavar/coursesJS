@@ -1,24 +1,33 @@
-window.onload = loadBook();
 let bookID = () => document.location.search.substring(1);
+// function bookID() {
+//   return document.location.search.substring(1);
+// }
 let editBook = book => {
   let url = "http://localhost:3000/books/" + bookID();
-  let xhr = new XMLHttpRequest();
-  xhr.open('PUT', url, false);
-  xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-  xhr.setRequestHeader('Accept', 'application/json');
-  xhr.send(JSON.stringify(book));
+
+  fetch(url, {
+    method: 'PUT',
+    headers: { "Content-Type": "application/json; charset=utf-8" },
+    body: JSON.stringify(book)
+  }).then(function(response) {
+    if (response.ok) {
+      goToMainWindow();
+    }
+  });
 }
 
+window.onload = loadJSON();
+
 function loadJSON() {
-  let xhr = new XMLHttpRequest();
   let url = "http://localhost:3000/books/" + bookID();
-  xhr.open('GET', url, false);
-  xhr.send();
-  if (xhr.status != 200) {
-    alert(xhr.status + ': ' + xhr.statusText);
-  } else {
-    return JSON.parse(xhr.responseText);
-  }
+
+  fetch(url).then(function(response) {
+    if (response.ok) {
+      return response.json();
+    }
+  }).then(function(currentBook) {
+    loadBook(currentBook);
+  });
 }
 
 function chooseFormToCreate() {
@@ -35,8 +44,7 @@ function chooseFormToCreate() {
   }
 }
 
-function loadBook() {
-  let currentBook = loadJSON();
+function loadBook(currentBook) {
 
   if (currentBook.long != undefined) {
     document.getElementById('choose-type').value = "audio";
@@ -85,7 +93,7 @@ function updateBook() {
       return alert("Выберите тип книги!");
   }
   editBook(book);
-  goToMainWindow();
+  //goToMainWindow();
 }
 
 function goToMainWindow() {

@@ -1,25 +1,24 @@
-window.onload = fillInTheTable();
+let bookID = () => document.location.search.substring(1);
 
 function loadJSON() {
-  let bookID = () => document.location.search.substring(1);
+
   let url = "http://localhost:3000/books/" + bookID();
-  let xhr = new XMLHttpRequest();
-  xhr.open('GET', url, false);
-  xhr.send();
-  if (xhr.status != 200) {
-    alert(xhr.status + ': ' + xhr.statusText);
-  } else {
-    return JSON.parse(xhr.responseText);
-  }
+  fetch(url).then(function(response) {
+    if (response.ok) {
+      return response.json();
+    }
+  }).then(function(currentBook) {
+    fillInTheTable(currentBook);
+  });
 }
 
-function fillInTheTable() {
+window.onload = loadJSON();
+
+function fillInTheTable(currentBook) {
   let table = document.createElement('table');
   let tableInfo = "<thead><tr><th>Свойство</th><th>Значение</th></tr>" +
     "</thead><tbody><tr><td scope=\"row\">Название</td>" +
     "<td>";
-
-  let currentBook = loadJSON();
 
   tableInfo += " " + currentBook.title + "</td>" +
     "</tr><tr><td scope=\"row\">Автор</td>" +

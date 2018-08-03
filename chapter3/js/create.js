@@ -1,9 +1,13 @@
-function sendToServer(body) {
-	let xhr = new XMLHttpRequest();
-	xhr.open('POST', 'http://localhost:3000/books', false);
-	xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-	xhr.setRequestHeader('Accept', 'application/json');
-	xhr.send(body);
+function sendToServer(book) {
+	fetch('http://localhost:3000/books', {
+		method: 'POST',
+		headers: { "Content-Type": "application/json; charset=utf-8" },
+		body: JSON.stringify(book)
+	}).then(function(response) {
+		if (response.ok) {
+			goToMainWindow();
+		}
+	});
 }
 
 function chooseFormToCreate() {
@@ -61,8 +65,8 @@ function createBook() {
 
 		book = new StudyBook(...bookParams, science, illustration);
 	}
-	sendToServer(JSON.stringify(book));
-	goToMainWindow();
+	sendToServer(book);
+
 }
 
 function goToMainWindow() {
