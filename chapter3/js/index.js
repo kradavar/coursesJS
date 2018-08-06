@@ -105,7 +105,7 @@ let searchByPublishingHouse = (parameter, books) => {
 let searchByYear = (parameter, books) => {
 	let results = [];
 	for (let book of books) {
-		if (book.year == parameter) {
+		if (book.year = parameter) {
 			results.push(book);
 		}
 	}
@@ -143,8 +143,6 @@ function showModalSearch(books) {
 
 	let parentDiv = document.getElementById("search-modal-body");
 
-	parentDiv.innerHTML = "";
-
 	if (books.length != 0) {
 		fillInTheTable(books, parentDiv);
 	} else {
@@ -153,7 +151,8 @@ function showModalSearch(books) {
 		parentDiv.appendChild(message);
 	}
 
-	$("#search-results").modal();
+	// $("search-results").modal();
+	modal.showModal();
 
 
 }
