@@ -40,26 +40,34 @@ thead {
 }
 
 #create-btn {
-	margin: 7px;
+	margin: 11px;
 	background-color: #9D6C30;
 	border: none;
 }
 
 #search-input {
-	border-color: #9D6C30;
+	border-color: #f1c794;
 	background-color: #f1c794;
 }
 
 #create-btn:hover,
 #search-btn:hover {
 	border-color: #f1c794;
+	border-width: 1px;
 	background-color: #f1c794;
 }
 
 #search-btn {
 	background-color: #9D6C30;
-	border: none;
+	border: 1px solid #9D6C30;
 	color: white;
+}
+
+#select-search {
+	height: 34px;
+	background-color: #f1c794;
+	border: 1px solid #f1c794;
+	color: #5d3c15;
 }
 
 .my-a-btn {
