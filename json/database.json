@@ -21,6 +21,17 @@
       "science": "История",
       "illustration": false,
       "id": 2
+    },
+    {
+      "title": "hjk",
+      "author": "hjk",
+      "audience": "12-15",
+      "description": "v",
+      "publishingHouse": "h",
+      "year": "2015",
+      "science": "565",
+      "illustration": "on",
+      "id": 3
     }
   ]
 }
