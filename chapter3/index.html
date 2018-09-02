@@ -9,11 +9,13 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body onload="loadJSON()">
+<body>
   <!-- navbar -->
   <div class="navbar header" role="navigation">
     <div class="navbar-header">
-      <a class="navbar-brand mb-0 h1" id="books-brand" href="#"><b>КНИГИ</b></a>
+      <a class="navbar-brand mb-0 h1" id="books-brand" href="#">
+        <b>КНИГИ</b>
+      </a>
     </div>
     <div class="navbar-collapse collapse move">
       <div class="cont">
@@ -23,9 +25,9 @@
           </button>
         </a>
         <div class="panel-heading clearfix">
-          <form class="input-group col-md-4" onsubmit="findBook(); return false;">
+          <form id="search-form" class="input-group col-md-4">
             <div class="input-group-btn">
-              <select class="btn btn-default dropdown-toggle" id="select-search" onchange="changePlaceholder()">
+              <select class="btn btn-default dropdown-toggle" id="select-search">
                 <option value="title" selected>Название</option>
                 <option value="author">Автор</option>
                 <option value="publishingHouse">Издательство</option>
@@ -59,7 +61,10 @@
           <h4 class="modal-title">Удалить книгу</h4>
         </div>
         <div class="modal-body">
-          <p>Вы уверены, что хотите удалить <b><i class="title"></i></b>? Отменить действие будет невозможно.</p>
+          <p>Вы уверены, что хотите удалить
+            <b>
+              <i class="title"></i>
+            </b>? Отменить действие будет невозможно.</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
@@ -86,9 +91,7 @@
       </div>
     </div>
   </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/index.js"></script>
+  <script src="dist/main.js"></script>
 </body>
 
 </html>

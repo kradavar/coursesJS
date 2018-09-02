@@ -13,7 +13,13 @@
     "webpack-cli": "^3.1.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "webpack": "webpack",
+    "debug": "node --inspect --inspect-brk ./node_modules/webpack/bin/webpack.js",
+    "prod": "npm run webpack -- --mode production",
+    "dev": "npm run webpack -- --mode development --watch",
+    "prod:debug": "npm run debug -- --mode production",
+    "dev:debug": "npm run debug -- --mode development",
+    "debugindex": "node --inspect --inspect-brk ./js/index.js"
   },
   "keywords": [],
   "author": "",
