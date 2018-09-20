@@ -8,12 +8,13 @@ export default function loadJSON(url) {
   });
 }
 
-export function putJSON(url, book) {
+export function sendJSON(method, url, book) {
   fetch(url, {
-    method: 'PUT',
+    method,
     headers: { "Content-Type": "application/json; charset=utf-8" },
     body: JSON.stringify(book)
   }).then(function (response) {
+    console.log(response)
     if (response.ok) {
       window.location = "../index.html";
     }

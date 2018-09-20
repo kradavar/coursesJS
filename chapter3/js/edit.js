@@ -1,4 +1,4 @@
-import loadJSON, { putJSON } from "./json";
+import loadJSON, { sendJSON } from "./json";
 
 let bookURL = () => "http://localhost:3000/books/" + document.location.search.substring(1);
 
@@ -70,11 +70,14 @@ function updateBook() {
       return alert("Выберите тип книги!");
   }
 
-  putJSON(bookURL(), book);
+  sendJSON("PUT", bookURL(), book);
 }
 
 window.onload = loadBook();
-document.getElementById("save-button").addEventListener("click", updateBook);
+document.getElementById("save-button").addEventListener("click", (event) => {
+  event.preventDefault();
+  updateBook();
+});
 document.getElementById("choose-type").addEventListener("change", chooseFormToCreate)
 document.getElementById("cancel-button").addEventListener("click", function () {
   window.location = "../index.html";

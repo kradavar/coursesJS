@@ -18,10 +18,10 @@
   <div class="contain">
     <h2>Новая книга: </h2>
     <div class="create-form">
-      <form onsubmit="createBook(); return false;">
+      <form id="create-form">
         <div class="form-group">
           <label for="choose-type">Тип записи: </label>
-          <select class="form-control selectpicker choose-type choose-red" id="choose-type" onchange="chooseFormToCreate()">
+          <select class="form-control selectpicker choose-type choose-red" id="choose-type">
             <option value="" id="hide" disabled selected>Выберите тип книги</option>
             <option value="audio">Аудиокнига</option>
             <option value="studybook">Учебник</option>
@@ -75,14 +75,12 @@
         </div>
         <div class="btn-to-add">
           <button type="submit" class="btn btn-primary" id="create-book-btn" disabled="true">Сохранить</button>
-          <button class="btn btn-secondary" onclick="goToMainWindow()">Отмена</button>
+          <button class="btn btn-secondary" id="cancel-button">Отмена</button>
         </div>
       </form>
     </div>
   </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
-  <script src="../js/create.js"></script>
+  <script src="../dist/create.js "></script>
 </body>
 
 </html>

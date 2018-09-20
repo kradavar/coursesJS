@@ -1,14 +1,6 @@
-function sendToServer(book) {
-	fetch('http://localhost:3000/books', {
-		method: 'POST',
-		headers: { "Content-Type": "application/json; charset=utf-8" },
-		body: JSON.stringify(book)
-	}).then(function(response) {
-		if (response.ok) {
-			goToMainWindow();
-		}
-	});
-}
+import { sendJSON } from "./json";
+import AudioBook from "./AudioBook";
+import StudyBook from "./StudyBook";
 
 function chooseFormToCreate() {
 	let bookType = document.getElementById('choose-type');
@@ -37,7 +29,7 @@ function chooseFormToCreate() {
 	document.getElementById('create-book-btn').disabled = false;
 }
 
-let getFormValues = () => {
+const getFormValues = () => {
 	let formValues = [];
 	formValues.push(document.getElementById('title').value);
 	formValues.push(document.getElementById('author').value);
@@ -65,36 +57,11 @@ function createBook() {
 
 		book = new StudyBook(...bookParams, science, illustration);
 	}
-	sendToServer(book);
-
+	sendJSON("POST", "http://localhost:3000/books", book);
 }
 
-function goToMainWindow() {
-	window.location = "../index.html";
-}
-
-function Book(title, author, audience, description, publishingHouse, year) {
-	this.title = title;
-	this.author = author;
-	this.audience = audience;
-	this.description = description;
-	this.publishingHouse = publishingHouse;
-	this.year = year;
-}
-
-function AudioBook(title, author, audience, description, publishingHouse, year, long, reader) {
-	Book.apply(this, arguments);
-	this.long = long;
-	this.reader = reader;
-}
-
-function StudyBook(title, author, audience, description, publishingHouse, year, science, illustration) {
-	Book.apply(this, arguments);
-	this.science = science;
-	this.illustration = illustration;
-}
-AudioBook.prototype = Object.create(Book.prototype);
-AudioBook.prototype.constructor = AudioBook;
-
-StudyBook.prototype = Object.create(Book);
-StudyBook.prototype.constructor = StudyBook;
+document.getElementById("choose-type").addEventListener('change', chooseFormToCreate);
+document.getElementById("create-form").addEventListener('submit', (event) => {
+	event.preventDefault();
+	createBook();
+});
