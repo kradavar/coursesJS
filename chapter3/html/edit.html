@@ -12,9 +12,9 @@
 <body>
   <div class="navbar header" role="navigation">
     <div class="navbar-header">
-        <a class="navbar-brand mb-0 h1" id="books-brand" href="../index.html">
-          <b>КНИГИ</b>
-        </a>
+      <a class="navbar-brand mb-0 h1" id="books-brand" href="../index.html">
+        <b>КНИГИ</b>
+      </a>
     </div>
   </div>
   <div class="contain">
@@ -22,7 +22,7 @@
     <div class="create-form">
       <div class="form-group">
         <label for="choose-type">Тип записи: </label>
-        <select class="form-control selectpicker choose-green" id="choose-type" onchange="chooseFormToCreate()">
+        <select class="form-control selectpicker choose-green" id="choose-type">
           <option value="audio" selected="selected">Аудиокнига</option>
           <option value="studybook">Учебник</option>
         </select>
@@ -78,12 +78,12 @@
         </form>
       </div>
       <div class="btn-to-add">
-        <button class="btn btn-primary" onclick="updateBook()">Сохранить</button>
-        <button class="btn btn-secondary" onclick="goToMainWindow()">Отмена</button>
+        <button class="btn btn-primary" id="save-button">Сохранить</button>
+        <button class="btn btn-secondary" id="cancel-button">Отмена</button>
       </div>
     </div>
   </div>
-  <script src="../js/edit.js"></script>
+  <script src="../dist/edit.js"></script>
 </body>
 
 </html>

@@ -1,17 +1,28 @@
-import { loadJSON, putJSON } from "./json";
+import loadJSON, { putJSON } from "./json";
 
 let bookURL = () => "http://localhost:3000/books/" + document.location.search.substring(1);
 
-window.onload = loadBook();
-
-function loadBook(params) {
+function loadBook() {
   loadJSON(bookURL()).then(function (currentBook) {
     fillInTheForm(currentBook);
   });
 }
 
-function fillInTheForm(currentBook) {
+function chooseFormToCreate() {
+  let bookType = document.getElementById('choose-type');
 
+  if (bookType.value == "audio") {
+    document.getElementById('audio-form').style.display = "block";
+    document.getElementById('studybook-form').style.display = "none";
+  }
+
+  if (bookType.value == "studybook") {
+    document.getElementById('audio-form').style.display = "none";
+    document.getElementById('studybook-form').style.display = "block";
+  }
+}
+
+function fillInTheForm(currentBook) {
   if (currentBook.long != undefined) {
     document.getElementById('choose-type').value = "audio";
     document.getElementById('audio-form').style.display = "block";
@@ -61,3 +72,10 @@ function updateBook() {
 
   putJSON(bookURL(), book);
 }
+
+window.onload = loadBook();
+document.getElementById("save-button").addEventListener("click", updateBook);
+document.getElementById("choose-type").addEventListener("change", chooseFormToCreate)
+document.getElementById("cancel-button").addEventListener("click", function () {
+  window.location = "../index.html";
+});

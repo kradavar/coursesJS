@@ -2,9 +2,13 @@ var webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-  entry: './js/index.js',
+  entry: {
+    index: './js/index.js',
+    edit: './js/edit.js',
+    create: './js/create.js'
+  },
   output: {
-    filename: 'main.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist')
   },
   plugins: [
