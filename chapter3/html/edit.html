@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Отредактировать</title>
-  <link href="../css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css">
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Отредактировать</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
 
-<body>
-  <div class="navbar header" role="navigation">
-    <div class="navbar-header">
-      <a class="navbar-brand mb-0 h1" id="books-brand" href="../index.html">
-        <b>КНИГИ</b>
-      </a>
+  <body>
+    <div class="navbar header" role="navigation">
+      <div class="navbar-header">
+        <a class="navbar-brand mb-0 h1" id="books-brand" href="../index.html">
+          <b>КНИГИ</b>
+        </a>
+      </div>
     </div>
-  </div>
-  <div class="contain">
-    <h2>Книга: </h2>
-    <div class="create-form">
-      <div class="form-group">
-        <label for="choose-type">Тип записи: </label>
-        <select class="form-control selectpicker choose-green" id="choose-type">
-          <option value="audio" selected="selected">Аудиокнига</option>
-          <option value="studybook">Учебник</option>
-        </select>
-        <form action="" class="general">
+    <div class="contain">
+      <h2>Книга: </h2>
+      <div class="create-form">
+        <div class="form-group">
+          <form action="" class="general"></form>
+          <label for="choose-type">Тип записи: </label>
+          <select class="form-control selectpicker choose-green" id="choose-type">
+            <option value="audio" selected="selected">Аудиокнига</option>
+            <option value="studybook">Учебник</option>
+          </select>
+
           <p>
             <label for="book-title">Название книги: </label>
             <input type="text" id="title" class="form-control text-info" required>
@@ -51,10 +52,9 @@
             <label for="description">Краткое описание: </label>
             <input type="text" id="description" class="form-control text-info" required>
           </p>
-        </form>
-      </div>
-      <div id="audio-form">
-        <form action="">
+
+        </div>
+        <div id="audio-form">
           <p>
             <label for="reader">Читает: </label>
             <input type="text" id="reader" class="form-control text-info" required>
@@ -63,10 +63,8 @@
             <label for="long">Длительность(в минутах): </label>
             <input type="number" id="long" class="form-control text-info" required>
           </p>
-        </form>
-      </div>
-      <div id="studybook-form" style="display: none;">
-        <form action="">
+        </div>
+        <div id="studybook-form" style="display: none;">
           <p>
             <label for="science">Область науки: </label>
             <input type="text" id="science" class="form-control text-info" required>
@@ -75,15 +73,15 @@
             <label for="illustration">Иллюстрации: </label>
             <input type="checkbox" id="illustration" class="form-control text-info" required>
           </p>
+        </div>
+        <div class="btn-to-add">
+          <button type="submit" class="btn btn-primary" id="save-button">Сохранить</button>
+          <button class="btn btn-secondary" id="cancel-button">Отмена</button>
+        </div>
         </form>
       </div>
-      <div class="btn-to-add">
-        <button class="btn btn-primary" id="save-button">Сохранить</button>
-        <button class="btn btn-secondary" id="cancel-button">Отмена</button>
-      </div>
     </div>
-  </div>
-  <script src="../dist/edit.js"></script>
-</body>
+    <script src="../dist/edit.js"></script>
+  </body>
 
 </html>

@@ -23,14 +23,14 @@
       "id": 2
     },
     {
-      "title": "hjk",
+      "title": "fhgh",
       "author": "hjk",
-      "audience": "12-15",
-      "description": "v",
       "publishingHouse": "h",
       "year": "2015",
+      "audience": "15-17",
+      "description": "v",
       "science": "565",
-      "illustration": "on",
+      "illustration": true,
       "id": 3
     }
   ]

@@ -1,97 +1,97 @@
 <!DOCTYPE html>
 <html lang="ru">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Книги</title>
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Книги</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
 
-<body>
-  <!-- navbar -->
-  <div class="navbar header" role="navigation">
-    <div class="navbar-header">
-      <a class="navbar-brand mb-0 h1" id="books-brand" href="#">
-        <b>КНИГИ</b>
-      </a>
-    </div>
-    <div class="navbar-collapse collapse move">
-      <div class="cont">
-        <a class="navbar-left" href="html/create-book.html">
-          <button type="button" id="create-btn" class="btn btn-primary my-a-btn">
-            Создать
-          </button>
+  <body>
+    <!-- navbar -->
+    <div class="navbar header" role="navigation">
+      <div class="navbar-header">
+        <a class="navbar-brand mb-0 h1" id="books-brand" href="#">
+          <b>КНИГИ</b>
         </a>
-        <div class="panel-heading clearfix">
-          <form id="search-form" class="input-group col-md-4">
-            <div class="input-group-btn">
-              <select class="btn btn-default dropdown-toggle" id="select-search">
-                <option value="title" selected>Название</option>
-                <option value="author">Автор</option>
-                <option value="publishingHouse">Издательство</option>
-                <option value="year">Год издания</option>
-              </select>
-            </div>
-            <input type="text" id="search-input" class="form-control" placeholder="Введите название книги..." />
-            <div class="input-group-btn">
-              <button type="submit" id="search-btn" class="btn btn-default">Найти</button>
-            </div>
-          </form>
+      </div>
+      <div class="navbar-collapse collapse move">
+        <div class="cont">
+          <a class="navbar-left" href="html/create-book.html">
+            <button type="button" id="create-btn" class="btn btn-primary my-a-btn">
+              Создать
+            </button>
+          </a>
+          <div class="panel-heading clearfix">
+            <form id="search-form" class="input-group col-md-4">
+              <div class="input-group-btn">
+                <select class="btn btn-default dropdown-toggle" id="select-search">
+                  <option value="title" selected>Название</option>
+                  <option value="author">Автор</option>
+                  <option value="publishingHouse">Издательство</option>
+                  <option value="year">Год издания</option>
+                </select>
+              </div>
+              <input type="text" id="search-input" class="form-control" placeholder="Введите название книги..." />
+              <div class="input-group-btn">
+                <button type="submit" id="search-btn" class="btn btn-default">Найти</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!----->
-  <div class="container">
-    <div class="for-button">
+    <!----->
+    <div class="container">
+      <div class="for-button">
+      </div>
+      <div id="for-table">
+      </div>
     </div>
-    <div id="for-table">
-    </div>
-  </div>
-  <!-- Модальное окно удаления-->
-  <div class="modal fade" id="devare-book" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index: 1100">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title">Удалить книгу</h4>
-        </div>
-        <div class="modal-body">
-          <p>Вы уверены, что хотите удалить
-            <b>
-              <i class="title"></i>
-            </b>? Отменить действие будет невозможно.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-          <button type="button" class="btn btn-danger btn-ok">Удалить</button>
+    <!-- Модальное окно удаления-->
+    <div class="modal fade" id="devare-book" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index: 1100">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">Удалить книгу</h4>
+          </div>
+          <div class="modal-body">
+            <p>Вы уверены, что хотите удалить
+              <b>
+                <i class="title"></i>
+              </b>? Отменить действие будет невозможно.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+            <button type="button" class="btn btn-danger btn-ok">Удалить</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!--Модальное окно результатов поиска-->
-  <div class="modal fade " id="search-results" tabindex="-1" role="dialog" aria-labelledby="searchLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg " role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title">Результаты поиска</h4>
-        </div>
-        <div class="modal-body" id="search-modal-body">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Назад</button>
+    <!--Модальное окно результатов поиска-->
+    <div class="modal fade " id="search-results" tabindex="-1" role="dialog" aria-labelledby="searchLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg " role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">Результаты поиска</h4>
+          </div>
+          <div class="modal-body" id="search-modal-body">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Назад</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <script src="dist/index.js"></script>
-</body>
+    <script src="./dist/index.js"></script>
+  </body>
 
 </html>
